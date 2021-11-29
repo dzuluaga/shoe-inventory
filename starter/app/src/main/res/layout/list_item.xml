@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe"
+            />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText">
+        <!-- ScrollView allows vertical scrolling -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- Use LinearLayout to add an indeterminate number of rows -->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--For image src we have used ic_launcher
+                    and for text "GeeksForGeeks" and "gfg"
+                    they are used only for reference how it will looks"-->
+                <ImageView
+                    android:id="@+id/androidVersionImage"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:padding="8dp"
+                    android:src="@{shoe.images.get(0)}"
+                    /> <!--android:src="@mipmap/ic_launcher_round"--> <!--android:src="@{shoe.images[0]}"--> <!--app:imageUrl="@{shoe.images.get(0)}"-->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/shoeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{shoe.name}"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/shoeDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{shoe.description}" />
+
+                    <TextView
+                        android:id="@+id/shoeSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(shoe.size)}" />
+
+                    <TextView
+                        android:id="@+id/shoeCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{shoe.company}" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
