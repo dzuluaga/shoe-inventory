@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <!-- This layout is also useful for including FloatingActionButton.
+    https://material.io/components/buttons-floating-action-button/android#using-fabs  -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

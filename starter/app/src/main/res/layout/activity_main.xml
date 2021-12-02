@@ -8,6 +8,9 @@
         android:layout_height="match_parent"
         android:id="@+id/drawerLayout">
 
+        <!-- Since there are only a handful of elements on the screen using LinearLayout will
+         have small impact on performance. For a larger quantity of elements on the screen with nested
+         layouts it's more critical to use other layouts such as the ConstraintLayout -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
