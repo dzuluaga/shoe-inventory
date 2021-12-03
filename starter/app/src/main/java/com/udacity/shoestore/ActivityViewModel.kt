@@ -1,10 +1,18 @@
 package com.udacity.shoestore
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.models.Shoe
 
+// loadImage resolves the resource id to display the image from string array in shoe.images
+@BindingAdapter("android:src")
+fun loadImage(view: ImageView, src: String) {
+    val resId = view.context.resources.getIdentifier(src , "drawable", view.context.packageName)
+    view.setImageResource(resId)
+}
 class ActivityViewModel: ViewModel() {
     private var _shoeList = MutableLiveData<MutableList<Shoe>>()
     val shoeList : LiveData<MutableList<Shoe>>
@@ -40,6 +48,7 @@ class ActivityViewModel: ViewModel() {
 
     fun addShoe(shoe : Shoe) {
         _shoe.value = shoe
+        // _shoeList.value?.add(shoe)
         _shoeAdded.value = true
     }
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe"
+            />
+    </data>
+    <!-- Use ConstraintLayout as it's less expensive for nesting elements within it.  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText"
+        android:id="@+id/constraint_layout_main">
+        <!-- Use LinearLayout to add items horizontally stacked -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/androidVersionImage"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:padding="8dp"
+                android:src="@{shoe.images.get(0)}" />
+
+            <!-- Use LinearLayout to add an indeterminate number of rows vertically stacked -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/shoeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="shoe name"
+                    android:text="@{shoe.name}"
+                    android:textStyle="bold" /> <!-- android:text="@{shoe.name}" -->
+
+                <TextView
+                    android:id="@+id/shoeDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Sample shoe description"
+                    android:text="@{shoe.description}" /><!--android:text="Sample shoedescription"-->
+
+                <TextView
+                    android:id="@+id/shoeSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Shoe size"
+                    android:text="@{Double.toString(shoe.size)}" /> <!--@{Double.toString(shoe.size)}-->
+
+                <TextView
+                    android:id="@+id/shoeCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Shoe company"
+                    android:text="@{shoe.company}" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

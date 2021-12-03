@@ -46,7 +46,6 @@ class ShoeDetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         activityViewModel.goBackToShoeList.observe(viewLifecycleOwner, Observer { goBackToShoeList ->
-            Log.i("shoeAdded ", goBackToShoeList.toString())
             if (goBackToShoeList) {
                 findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListFragment())
                 activityViewModel.resetGoBackToShoeList()

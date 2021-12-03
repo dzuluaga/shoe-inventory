@@ -14,10 +14,12 @@
         <entry key="app/src/main/res/layout/fragment_instruction.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_shoe_detail.xml" value="0.2111111111111111" />
-        <entry key="app/src/main/res/layout/fragment_shoe_list.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_shoe_list.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_custom_layout.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/shoe_custom_layout.xml" value="0.22" />
         <entry key="app/src/main/res/menu/navdrawer_menu.xml" value="0.22" />
         <entry key="app/src/main/res/menu/overflow_menu.xml" value="0.1" />
       </map>

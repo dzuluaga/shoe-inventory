@@ -6,20 +6,17 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.onNavDestinationSelected
 import com.udacity.shoestore.ActivityViewModel
-import com.udacity.shoestore.MainActivity
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import com.udacity.shoestore.models.ShoeAdapter
+import com.udacity.shoestore.databinding.ShoeCustomLayoutBinding
+import com.udacity.shoestore.models.Shoe
 
 class ShoeListFragment : Fragment() {
     private val viewModel: ActivityViewModel by activityViewModels()
     private lateinit var binding: FragmentShoeListBinding
+    // private lateinit var shoeLayoutBinding: ShoeCustomLayoutBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,26 +34,39 @@ class ShoeListFragment : Fragment() {
             view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailFragment())
         }
 
-        // binds the list item with all the shoes
-        val adapter = ShoeAdapter(this.context, R.layout.list_item, viewModel.shoeList.value)
-        binding.listView.adapter = adapter
+        // Add a view to the list LinearLayout with a shoe in the shoeList
+        viewModel.shoeList.value?.forEach { shoe ->
+            Log.i("adding shoes", shoe.toString())
+            binding.shoeListLinearLayout.addView(this.createShoeLayout(shoe, inflater, container))
+        }
+
+        viewModel.shoeAdded.observe(viewLifecycleOwner, { shoeAdded ->
+            if (shoeAdded) {
+                binding.shoeListLinearLayout.addView(this.createShoeLayout(viewModel.shoe.value!!, inflater, container))
+                viewModel.addShoeToList(viewModel.shoe.value!!)
+                viewModel.resetShoeAdded()
+            }
+        })
 
         return binding.root
+    }
+
+    private fun createShoeLayout(shoe: Shoe, inflater: LayoutInflater, container: ViewGroup?): View {
+        val shoeLayoutBinding: ShoeCustomLayoutBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.shoe_custom_layout,
+            container,
+            false
+        )
+        // Bind the shoe to the layout view created programmatically
+        shoeLayoutBinding.shoe = shoe
+
+        return shoeLayoutBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.shoeAdded.observe(viewLifecycleOwner, { shoeAdded ->
-            if (shoeAdded) {
-                viewModel.addShoeToList(viewModel.shoe.value!!)
-                viewModel.resetShoeAdded()
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
